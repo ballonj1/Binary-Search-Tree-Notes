@@ -17,3 +17,22 @@ Steps to #insert(value, root)
 1. Compare the value to be inserted to the root to decide what side of the tree value should be inserted into.
 2. If value is > root, check for the root's right child.  If the right child exists, compare its value against the value to be inserted. (perform #insert(value, root.right_child))  Otherwise, make value into the root's right child.
 3. If value < root, check for the roots left child.  If the left child doesn't exist, set the root's left child to be equal to the value.  If the root's left child does exist, compare the value to be inserted against this node.  (#insert(value, root.left_child))
+
+## Key Operation 2: #find
+In order to successfully find a value in the binary search tree, we will implement an algorithm similar to #insert.  At each step, we will be moving towards the place in the BST that the node we are looking for would be if it were in fact a part of the tree.  
+
+Steps to #find(val)
+1. Check to see if the root.nil?. If true, we will return false
+2. Compare root to val.  Return true if they're equal
+3. If unequal, we will check val against the root to see if we should check to the left or the right.  If val is < root, we will check to see if the left child is the node we're looking for. (root.left_subtree.find(val)).  If val is > root, we will check to see if the right child is the node we're looking for. (root.right_subtree.find(val))
+
+##Key Operation 3: #delete
+Delete is a bit more complicated than the other two functions in that we'll need to account for the fact that if we delete a node, the children and parent of that node will have pointers that are no longer valid.  Additionally, we'll need to find a replacement for the node.  If the replacement has children of its own, we'll have to account for this as well.  To implement delete, we first need to find the node.  To do this, we'll be checking every node against the value we're looking to delete.  If the root node exists and is not equal to the node we're looking for, we'll compare the values to see if the node we're looking for would be located in the right or left subtree.  If the value we're looking for is less than the root node, we'll search the left subtree.  root.left_subtree.find(val)  If the value we're looking for is more than the root node, we'll search the right subtree.  root.right_subtree.find(val)  If the root is not equal to the value we're looking for and does not have any children, we'll return false.  If the val is located, we'll need to find a replacement. To find the correct replacement for the node we're looking for (the node that we'll be deleting has children), we can do one of two things.  According to the Hibbard deletion algorithm, the replacement should satisfy criteria.
+
+1. The replacement for the root of any tree should be greater than all of the nodes in its left subtree
+2. The replacement for the root of any tree should be less than all of the nodes in its right subtree.
+3. We must be able to easily resolve the fates of the children of the replacement
+
+In order to find the right node as the replacement, we can either find the largest element in the left subtree, or the smallest element in the right subtree.  This node can be found by recursively searching the right child of the left subtree until the right child's child is nil.  Conversely, it can be found by recursively searching the left child of the right subtree until the left child's child is nil.  If the node to be deleted only has one child, we can simply promote that child.
+
+We will create a function that will return the max node in the subtree that we pass in as an argument
