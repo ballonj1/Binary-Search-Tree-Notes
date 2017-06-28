@@ -43,3 +43,18 @@ All operations #find, #insert, #max, #min, run in O(depth) time, since we are tr
 The kth level of the tree contains (2^depth - 1).  Consecutive powers of 2 add such that the total number of nodes at any level of the tree would be (2^depth) - 1.  Since the time complexity of these operations are O(depth), solving for depth, we would be left with log2n = depth and the time complexity would be O(log n) if our BST is full or close to full.  
 
 If the BST is degenerate, all of the operations would take place in linear time.  One of the downsides of Hibbard deletion is that if we continue to insert and delete elements, we'll eventually end up with a tree that has depth = sqrt(n).  In order to ensure that we'll get an average of O(log n) time complexity, we'll have to use a Balanced Tree.
+
+## Balanced Trees
+We want the depth of our tree to be log2n -> n being the number of elements in our balanced tree.
+
+A Binary tree is balanced if
+1. The depths of bst.right_subtree and bst.left_subtree differ by at most 1
+2. Both bst.right_subtree and bst.left_subtree are balanced BSTs as well
+
+Steps
+1. Find the depths of full_bst.left_subtree and full_bst.right_subtree
+2. Determine if full_bst.left_subtree is balanced
+3. Compare the depths of the left and right subtrees of full_bst.left_subtree
+4. Determine if full_bst.left_subtree.left_subtree is balanced
+5. Determine if full_bst.left_subtree.right_subtree is balanced
+6. Compare the depths of the left and right subtrees of full_bst.right_subtree
