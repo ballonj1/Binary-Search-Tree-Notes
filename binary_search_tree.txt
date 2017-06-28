@@ -1,0 +1,19 @@
+## Binary Search Trees
+
+Key Operations
+1. #find
+2. #insert
+3. #delete
+-> Data set and the order that it is entered into the DS should not (drastically) affect the way these operations work or how fast they perform
+
+##Building a BST
+Each BST originates with a single node called the root.  When another node is added to the tree, parent-child relationships will be developed.
+
+1. Each node can have up to two children.  Each child is a node and is the root of its own subtree.
+2. The values of each node in the left subtree must be less than the value of the root.
+3. The values of each node in the right subtree must be greater than the value of the root.
+
+Steps to #insert(value, root)
+1. Compare the value to be inserted to the root to decide what side of the tree value should be inserted into.
+2. If value is > root, check for the root's right child.  If the right child exists, compare its value against the value to be inserted. (perform #insert(value, root.right_child))  Otherwise, make value into the root's right child.
+3. If value < root, check for the roots left child.  If the left child doesn't exist, set the root's left child to be equal to the value.  If the root's left child does exist, compare the value to be inserted against this node.  (#insert(value, root.left_child))
