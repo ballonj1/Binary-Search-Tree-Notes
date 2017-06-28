@@ -36,3 +36,10 @@ Delete is a bit more complicated than the other two functions in that we'll need
 In order to find the right node as the replacement, we can either find the largest element in the left subtree, or the smallest element in the right subtree.  This node can be found by recursively searching the right child of the left subtree until the right child's child is nil.  Conversely, it can be found by recursively searching the left child of the right subtree until the left child's child is nil.  If the node to be deleted only has one child, we can simply promote that child.
 
 We will create a function that will return the max node in the subtree that we pass in as an argument
+
+## Time Complexity
+All operations #find, #insert, #max, #min, run in O(depth) time, since we are traversing at most depth levels of the tree.
+
+The kth level of the tree contains (2^depth - 1).  Consecutive powers of 2 add such that the total number of nodes at any level of the tree would be (2^depth) - 1.  Since the time complexity of these operations are O(depth), solving for depth, we would be left with log2n = depth and the time complexity would be O(log n) if our BST is full or close to full.  
+
+If the BST is degenerate, all of the operations would take place in linear time.  One of the downsides of Hibbard deletion is that if we continue to insert and delete elements, we'll eventually end up with a tree that has depth = sqrt(n).  In order to ensure that we'll get an average of O(log n) time complexity, we'll have to use a Balanced Tree.
