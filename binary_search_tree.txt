@@ -58,3 +58,13 @@ Steps
 4. Determine if full_bst.left_subtree.left_subtree is balanced
 5. Determine if full_bst.left_subtree.right_subtree is balanced
 6. Compare the depths of the left and right subtrees of full_bst.right_subtree
+
+## Self-Balancing Trees
+Our BST will have a method rebalance built onto its prototype, and this method will be called after every insertion and deletion
+
+## Retrieving the Data
+It's not uncommon to want to retrieve all of the elements from a BST in sorted order; this is called in-order traversal of the tree.  We should traverse the entire left subtree first followed by the entire right subtree.
+
+1. Perform an in-order traversal of the left subtree.
+2. Record the value of the root.
+3. Perform an in-order traversal of the right subtree.
